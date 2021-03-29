@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from './components/Footer';
 import "./components/LandingPage.css"
 import Header from './components/Header';
+import Chatbot from './components/Chatbot';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/predict" component={CropIdentifier} />
+        <Route path="/locate" component={Chatbot} />
         <Route path="/" component={LandingPage} />
       </Switch>
       <Footer />
