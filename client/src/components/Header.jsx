@@ -33,6 +33,7 @@ export default function Header() {
                         <ul className="res">
                             <li><Link to="/" className="active hvr-sweep-to-bottom">Home</Link></li>
                             <li><Link to="/predict" className="active hvr-sweep-to-bottom">Predict</Link></li>
+                            <li><Link to="/locate" className="active hvr-sweep-to-bottom">Locate</Link></li>
                             <li><Link className="hvr-sweep-to-bottom" to="/about">About Kisanmitra</Link></li>
                             <li><Link className="hvr-sweep-to-bottom" to="/discuss">Feedback</Link></li>
                             <li><Link className="hvr-sweep-to-bottom" to="/team">Team</Link></li>
