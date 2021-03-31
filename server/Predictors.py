@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-
+from flask import render_template
 import joblib
 import base64
 
@@ -7,6 +7,10 @@ import tensorflow as tf
 import numpy as np
 import cv2
 import os
+
+
+
+
 
 class CropPredictor(Resource):
     parser = reqparse.RequestParser()
@@ -74,9 +78,9 @@ class SoilPredictor(Resource):
     def post(self):
         data= SoilPredictor.parser.parse_args()
 
+        soil = data['SoilImage'].decode('utf-8')
+        soil=base64.b64decode(soil)
 
-        soil=base64.b64decode(data["SoilImage"])
-   
         filename = 'temp.jpg'
         with open(filename, 'wb') as f:
             f.write(soil)
@@ -84,7 +88,7 @@ class SoilPredictor(Resource):
 
         img = cv2.imread("temp.jpg")
 
-        os.remove("temp.jpg")
+        # os.remove("temp.jpg")
 
         img = cv2.resize(img, (150, 150))
 
@@ -105,4 +109,20 @@ class SoilPredictor(Resource):
         print(pred_class)
         print(pred_prob)
 
-        return pred_class,201
+
+        if pred_class== 'Black_Soil':
+            ans=['Black_Soil', 'Cotton', 'Wheat', 'Jowar', 'Linseed', 'Virginia Tobacco', 'Castor', 'Sunflower', 'Millets', 'Rice(If water is available)', 'Sugercane(If water is available)']
+
+        elif pred_class== 'Clay_Soil':
+            ans=['Clay_Soil', 'Lettuce', 'Chard', 'Snap Beans and Other Crops with Shallow Roots', 'Broccoli', 'Brussels Sprouts', 'Cabbage']
+
+        elif pred_class== 'Red_Soil':
+            ans=['Red_Soil', 'Cotton', 'Wheat', 'Rice', 'Pulses', 'Millets', 'Tobacco', 'Oilseeds', 'Potatoes', 'Fruits']
+
+
+        elif pred_class== 'Alluvial_Soil':
+            ans=['Alluvial_Soil', 'Rice', 'Wheat', 'Sugarcane', 'Tobacco', 'Cotton', 'Jute', 'Maize', 'Oilseeds', 'Vegetables', 'Fruits']
+
+
+
+        return ans,201
