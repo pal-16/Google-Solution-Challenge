@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import GoogleMapReact from 'google-map-react'
 import './Map.css';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -10,9 +10,8 @@ const LocationPin = ({ text }) => (
     </div>
 )
 
-const Map = ({ location, zoomLevel }) => {
-
-    return <div className="map">
+const Map = ({ location, zoomLevel }) => (
+    <div className="map">
         <h2 className="map-h2">Come Visit Us At Our Campus</h2>
 
         <div className="google-map">
@@ -29,6 +28,6 @@ const Map = ({ location, zoomLevel }) => {
             </GoogleMapReact>
         </div>
     </div>
-}
+)
 
 export default Map
