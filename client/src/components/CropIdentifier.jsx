@@ -23,6 +23,7 @@ import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { useParams } from "react-router-dom";
 import { green } from "@material-ui/core/colors";
+import base64 from "base-64";
 
 const BASE_URL = "http://localhost:8000/";
 
@@ -106,8 +107,14 @@ export default function CropIdentifier() {
 
     const handleUpload = async (e) => {
         e.preventDefault();
-        const imgString = await getBase64(file);
-        console.log(imgString);
+        const data = new FormData();
+        data.append('file', file);
+        const response = await axios.post("https://31fd82ce164a.ngrok.io/upload", data, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        console.log(response.data);
     }
 
     return (
