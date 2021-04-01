@@ -7,6 +7,7 @@ import "./components/LandingPage.css"
 import Header from './components/Header';
 import Chatbot from './components/Chatbot';
 import Feedback from './components/Feedback';
+import Map from './components/Map';
 
 function App() {
 
@@ -14,9 +15,8 @@ function App() {
     <Router>
       <Header />
       <Switch>
-        <Route path="/predict" component={CropIdentifier} />
-        <Route path="/locate/:crop" component={Chatbot} />
-        <Route path="/locate" component={Chatbot} />
+        <Route path="/predict" component={Chatbot} />
+        <Route path="/locate" component={Map} />
         <Route path="/feedback" component={Feedback} />
         <Route path="/" component={LandingPage} />
       </Switch>

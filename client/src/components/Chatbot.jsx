@@ -1,58 +1,8 @@
-import { CircularProgress, Container } from '@material-ui/core'
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router';
-import Map from './Map'
+import { Container } from '@material-ui/core'
+import React from 'react'
 
-export default function Chatbot() {
-    const [userLocation, setUserLocation] = useState({
-        lat: "",
-        lng: "",
-        address: ""
-    });
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-
-    const BASE_URL = "https://a1763397adee.ngrok.io/";
-
-    const crop = useParams().crop;
-
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                setUserLocation({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                    address: "You"
-                });
-                setIsLoading(false);
-            }, (positionErr) => {
-                setError(positionErr.message);
-                setIsLoading(false);
-            });
-        }
-    }, [])
-
-    useEffect(() => {
-        if (!!crop && !!userLocation) {
-            const body = {
-                location: {
-                    lat: userLocation.lat,
-                    lng: userLocation.lng
-                }
-            }
-            setIsLoading(true);
-            axios.post(`https://4575b1dcf873.ngrok.io/map/${crop}`,
-                body
-            ).then(res => {
-                console.log(res.data);
-            }).catch(err => {
-                console.log(err);
-            }).finally(() => setIsLoading(false));
-        }
-    }, [crop, userLocation])
-
-    return isLoading ? (<Container maxWidth="sm"><CircularProgress size="500px" /></Container>) : (
+export default function Chatbot(props) {
+    return (
         <Container maxWidth="sm">
             <iframe
                 allow="microphone;"
@@ -66,7 +16,6 @@ export default function Chatbot() {
                 agent-id="b2a9a183-d33c-4be3-ae44-f4c69d484d14"
                 language-code="en"
             />
-            <Map location={userLocation} zoomLevel={17} />
         </Container>
     )
 }
