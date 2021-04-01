@@ -32,7 +32,8 @@ export default function Header() {
                         <span className="menu"> <img src="https://kisanmitra.herokuapp.com/images/icon.png" alt="" /></span>
                         <ul className="res">
                             <li><Link to="/" className="active hvr-sweep-to-bottom">Home</Link></li>
-                            <li><Link to="/predict" className="active hvr-sweep-to-bottom">Predict</Link></li>
+                            <li><Link to="/crop-identify" className="active hvr-sweep-to-bottom">Predict Soil</Link></li>
+                            <li><Link to="/predict" className="active hvr-sweep-to-bottom">Find your crop</Link></li>
                             <li><Link to="/locate" className="active hvr-sweep-to-bottom">Locate</Link></li>
                             <li><Link className="hvr-sweep-to-bottom" to="/about">About Kisanmitra</Link></li>
                             <li><Link className="hvr-sweep-to-bottom" to="/feedback">Feedback</Link></li>

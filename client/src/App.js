@@ -15,6 +15,7 @@ function App() {
     <Router>
       <Header />
       <Switch>
+        <Route path="/crop-identify" component={CropIdentifier} />
         <Route path="/predict" component={Chatbot} />
         <Route path="/locate" component={Map} />
         <Route path="/feedback" component={Feedback} />

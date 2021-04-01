@@ -1,5 +1,6 @@
 import DateFnsUtils from "@date-io/date-fns";
 import {
+    Box,
     Button,
     CircularProgress,
     Container,
@@ -10,6 +11,12 @@ import {
     MenuItem,
     Paper,
     Select,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
     TextField,
     Typography
 } from "@material-ui/core";
@@ -71,6 +78,10 @@ export default function CropIdentifier() {
     const [file, setFile] = useState();
     const [fileUrl, setFileUrl] = useState("");
 
+    const [soil, setSoil] = useState("");
+    const [crops, setCrops] = useState([]);
+    const [counter, setCounter] = useState(0);
+
     const [isLoading, setIsLoading] = useState(false);
 
     // useEffect(() => {
@@ -93,27 +104,21 @@ export default function CropIdentifier() {
         setFileUrl(URL.createObjectURL(fileUpload))
     }
 
-    const getBase64 = (file) => {
-        return new Promise(resolve => {
-            let baseUrl = "";
-            let reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                baseUrl = reader.result;
-                resolve(baseUrl);
-            }
-        })
-    }
-
     const handleUpload = async (e) => {
         e.preventDefault();
+        setCounter(1);
+        setIsLoading(true);
         const data = new FormData();
         data.append('file', file);
-        const response = await axios.post("https://31fd82ce164a.ngrok.io/upload", data, {
+        const response = await axios.post("https://48ed072a5a88.ngrok.io/upload", data, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         });
+        setSoil(response.data[0]);
+        setCrops(response.data.splice(1));
+        setIsLoading(false);
+
         console.log(response.data);
     }
 
@@ -129,38 +134,68 @@ export default function CropIdentifier() {
                     </Typography>
                 </div>
             </header>
-            {isLoading ? (
-                <CircularProgress size={42} className={classes.buttonProgress} />
-            ) : (
-                <Container maxWidth="sm">
-                    <Paper style={{ padding: 16 }} elevation={2}>
-                        <Grid container alignItems="flex-start" spacing={4}>
-                            <Grid item xs={12}>
-                                <p>Upload your soil image here ⬇️ </p>
-                                <label htmlFor="import-button" hidden>Crop Image</label>
-                                <input
-                                    id="import-button"
-                                    onChange={onInputChange}
-                                    type="file"
-                                />
-                            </Grid>
-                            {!!file && <Grid item xs={12}>
-                                <img className={classes.image} src={fileUrl} alt="Crop" />
-                            </Grid>}
-                            <Grid item xs={12}>
-                                <Button
-                                    color="secondary"
-                                    variant="contained"
-                                    type="submit"
-                                    onClick={handleUpload}
-                                >
-                                    submit
-                            </Button>
-                            </Grid>
+            <Container maxWidth="sm">
+                <Paper style={{ padding: 16 }} elevation={2}>
+                    <Grid container alignItems="flex-start" spacing={4}>
+                        <Grid item xs={12}>
+                            <p>Upload your soil image here ⬇️ </p>
+                            <label htmlFor="import-button" hidden>Crop Image</label>
+                            <input
+                                id="import-button"
+                                onChange={onInputChange}
+                                type="file"
+                            />
                         </Grid>
-                    </Paper>
-                </Container>
-            )}
+                        {!!file && <Grid item xs={12}>
+                            <img className={classes.image} src={fileUrl} alt="Crop" />
+                        </Grid>}
+                        <Grid item xs={12}>
+                            <Button
+                                color="secondary"
+                                variant="contained"
+                                type="submit"
+                                onClick={handleUpload}
+                                disabled={isLoading}
+                            >
+                                submit
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Paper>
+            </Container>
+            <br />
+            <br />
+            {
+                counter === 1 &&
+                (<Container maxWidth="sm">
+                    {
+                        isLoading ? <CircularProgress /> : <><p>Your soil type is : <b>{soil}</b></p>
+                            <br />
+                            <br />
+                            <h3>Here are the crops best suited for your soil</h3>
+                            <TableContainer component={Paper}>
+                                <Table className={classes.table} aria-label="simple table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Crops</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {crops.map((row, idx) => (
+                                            <TableRow key={idx}>
+                                                <TableCell component="th" scope="row">
+                                                    {row}
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer></>
+                    }
+
+                </Container>)
+            }
+
         </Container>
     );
 }
