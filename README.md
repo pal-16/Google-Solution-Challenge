@@ -3,7 +3,7 @@ Helping farmers grow sustainable crops through communication and collaboration w
 
 # Setup
 
-Please refer to [setup](./setup.md) for instructions on how to set up this repository.
+Please refer to [setup](./SETUP.md) for instructions on how to set up this repository.
 
 # Code of Conduct
 
