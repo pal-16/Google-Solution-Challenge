@@ -11,4 +11,4 @@ Kisan Mitra follows a closely accepted and widely famous Contributor Covenant, v
 
 # Contributing
 
-Please refer our [Contributing page](./CONTRIBUTING.md) for more information on how to and what to contribute. The Setup steps are are in [SETUP.md](./setup.md)
+Please refer our [Contributing page](./CONTRIBUTING.md) for more information on how to and what to contribute. The Setup steps are are in [SETUP.md](./SETUP.md)
