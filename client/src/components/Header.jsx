@@ -36,7 +36,6 @@ export default function Header() {
                             <li><Link to="/locate" className="active hvr-sweep-to-bottom">Locate</Link></li>
                             <li><Link className="hvr-sweep-to-bottom" to="/about">About Kisanmitra</Link></li>
                             <li><Link className="hvr-sweep-to-bottom" to="/feedback">Feedback</Link></li>
-                            <li><Link className="hvr-sweep-to-bottom" to="/team">Team</Link></li>
                         </ul>
                     </div>
                 </div>
