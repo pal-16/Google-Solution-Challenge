@@ -1,7 +1,8 @@
 import { Container } from '@material-ui/core'
 import React from 'react'
+import Page from './Page'
 
-export default function Feedback() {
+function Feedback() {
     return (
         <Container maxWidth="sm">
             <iframe
@@ -11,9 +12,14 @@ export default function Feedback() {
                 frameborder="0"
                 marginheight="0"
                 marginwidth="0"
+                title="Kisaan Mitra Feedback"
             >
                 Loading…
             </iframe>
         </Container>
     )
 }
+
+const FeedbackPage = () => <Page title="Feedback" content="Help us understand you better"><Feedback /></Page>
+
+export default FeedbackPage;

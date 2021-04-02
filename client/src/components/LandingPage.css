@@ -15,11 +15,11 @@ html, body{
 }
 @font-face {
     font-family: 'Viga-Regular';
-    src:url(https://kisanmitra.herokuapp.com/fonts/Viga-Regular.ttf) format('truetype');
+    src:url(../assets/fonts/Viga-Regular.ttf) format('truetype');
 }
 @font-face {
     font-family:  'Oxygen-Regular';
-    src:url(https://kisanmitra.herokuapp.com/fonts/Oxygen-Regular.ttf) format('truetype');
+    src:url(../assets/fonts/Oxygen-Regular.ttf) format('truetype');
 }
 a {
   text-decoration: none;

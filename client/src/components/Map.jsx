@@ -4,6 +4,7 @@ import './Map.css';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { useLocation } from 'react-router';
 import axios from "axios";
+import Page from './Page';
 
 const LocationPin = ({ text }) => (
     <div className="pin">
@@ -64,7 +65,7 @@ const Map = () => {
                 console.log(err);
             }).finally(() => setIsLoading(false));
         }
-    }, [crop, userLocation])
+    }, [crop, userLocation, location])
 
 
     return <div className="map">
@@ -93,4 +94,6 @@ const Map = () => {
     </div>
 }
 
-export default Map
+const MapPage = () => <Page title="Locate centres" content="Find your nearest crop centres now"><Map /></Page>
+
+export default MapPage;

@@ -17,7 +17,7 @@ export default function Header() {
                         </div>
                         <div className="header-right">
                             <div className="logo">
-                                <h1><Link to="/">Kisan&nbsp;Mitra</Link></h1>
+                                <h1><Link to="/">Kisaan&nbsp;Mitra</Link></h1>
                             </div>
                         </div>
                         <div className="clearfix"> </div>
