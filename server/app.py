@@ -21,7 +21,7 @@ logger = logging.getLogger('HELLO WORLD')
 
 
 app = Flask(__name__)
-# CORS(app)
+CORS(app)
 api = Api(app)
 
 
@@ -74,19 +74,19 @@ def fileUpload():
     print(pred_prob)
 
     if pred_class == 'Black_Soil':
-        ans = ['Black_Soil', 'Cotton', 'Wheat', 'Jowar', 'Linseed', 'Virginia Tobacco', 'Castor', 'Sunflower',
+        ans = ['Black Soil', 'Cotton', 'Wheat', 'Jowar', 'Linseed', 'Virginia Tobacco', 'Castor', 'Sunflower',
                'Millets', 'Rice(If water is available)', 'Sugercane(If water is available)']
 
     elif pred_class == 'Clay_Soil':
-        ans = ['Clay_Soil', 'Lettuce', 'Chard', 'Snap Beans and Other Crops with Shallow Roots', 'Broccoli',
+        ans = ['Clay Soil', 'Lettuce', 'Chard', 'Snap Beans and Other Crops with Shallow Roots', 'Broccoli',
                'Brussels Sprouts', 'Cabbage']
 
     elif pred_class == 'Red_Soil':
-        ans = ['Red_Soil', 'Cotton', 'Wheat', 'Rice', 'Pulses', 'Millets', 'Tobacco', 'Oilseeds', 'Potatoes', 'Fruits']
+        ans = ['Red Soil', 'Cotton', 'Wheat', 'Rice', 'Pulses', 'Millets', 'Tobacco', 'Oilseeds', 'Potatoes', 'Fruits']
 
 
     elif pred_class == 'Alluvial_Soil':
-        ans = ['Alluvial_Soil', 'Rice', 'Wheat', 'Sugarcane', 'Tobacco', 'Cotton', 'Jute', 'Maize', 'Oilseeds',
+        ans = ['Alluvial Soil', 'Rice', 'Wheat', 'Sugarcane', 'Tobacco', 'Cotton', 'Jute', 'Maize', 'Oilseeds',
                'Vegetables', 'Fruits']
 
     return jsonify(ans), 200

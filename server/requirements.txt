@@ -8,6 +8,7 @@ chardet==4.0.0
 click==7.1.2
 Flask==1.1.2
 Flask-RESTful==0.3.8
+Flask-Cors==3.0.10
 gast==0.2.2
 google-auth==1.28.0
 google-auth-oauthlib==0.4.3

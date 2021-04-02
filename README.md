@@ -1,6 +1,13 @@
 # Kisan Mitra
 Helping farmers grow sustainable crops through communication and collaboration with Google!
 
+<p float="left">
+  
+<img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/flow-diagram.png" height = 200 width=400 />  <img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/website-1.JPG" height = 200 width=400/>
+<img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/accuracy.jpg" height = 200 width=100/>
+
+</p>
+
 # Setup
 
 Please refer to [setup](./SETUP.md) for instructions on how to set up this repository.
