@@ -4,7 +4,9 @@ Helping farmers grow sustainable crops through communication and collaboration w
 <p float="left">
   
 <img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/flow-diagram.png" height = 200 width=400 />  <img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/website-1.JPG" height = 200 width=400/>
-<img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/accuracy.jpg" height = 200 width=100/>
+<img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/website-2.JPG" height = 200 width=400 />  <img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/website-3.JPG" height = 200 width=400/>
+<br>
+<img src="https://github.com/ShubhankarKG/SolutionChallenge2k21/blob/master/accuracy.jpg" height = 300 width=200/>
 
 </p>
 
