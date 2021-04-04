@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./LandingPage.css"
+import Page from './Page'
 
-export default function LandingPage() {
+function Landing() {
     return (
         <div>
             <div className="banner">
@@ -50,3 +51,7 @@ export default function LandingPage() {
         </div>
     )
 }
+
+const LandingPage = () => <Page title="Kisaan Mitra" content="Helping farmers for sustainable development through Google"><Landing /></Page>
+
+export default LandingPage;

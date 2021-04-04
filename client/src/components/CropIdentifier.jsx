@@ -1,60 +1,22 @@
-import DateFnsUtils from "@date-io/date-fns";
+import { green } from "@material-ui/core/colors";
 import {
-    Box,
     Button,
     CircularProgress,
     Container,
     Grid,
-    Input,
-    InputLabel,
     makeStyles,
-    MenuItem,
     Paper,
-    Select,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    TextField,
     Typography
 } from "@material-ui/core";
-import {
-    KeyboardDatePicker,
-    MuiPickersUtilsProvider
-} from "@material-ui/pickers";
 import axios from "axios";
-import { Form, Formik, useField } from "formik";
-import React, { useEffect, useState } from "react";
-import * as yup from "yup";
-import { useParams } from "react-router-dom";
-import { green } from "@material-ui/core/colors";
-import base64 from "base-64";
-
-const BASE_URL = "http://localhost:8000/";
-
-const MyTextField = ({
-    placeholder,
-    type = "text",
-    fullWidth = true,
-    multiline = false,
-    ...props
-}) => {
-    const [field, meta] = useField(props);
-    const errorText = meta.error && meta.touched ? meta.error : "";
-    return (
-        <TextField
-            placeholder={placeholder}
-            {...field}
-            helperText={errorText}
-            error={!!errorText}
-            type={type}
-            fullWidth={fullWidth}
-            multiline={multiline}
-        />
-    );
-};
+import React, { useState } from "react"; import Page from "./Page";
+;
 
 const useclasses = makeStyles((theme) => ({
     buttonProgress: {
@@ -73,7 +35,7 @@ const useclasses = makeStyles((theme) => ({
     }
 }));
 
-export default function CropIdentifier() {
+function CropIdentifier() {
     const classes = useclasses();
     const [file, setFile] = useState();
     const [fileUrl, setFileUrl] = useState("");
@@ -83,20 +45,6 @@ export default function CropIdentifier() {
     const [counter, setCounter] = useState(0);
 
     const [isLoading, setIsLoading] = useState(false);
-
-    // useEffect(() => {
-    // if (isEditPage) {
-    //     axios
-    //         .get(BASE_URL + `products/${productId}`)
-    //         .then((res) => {
-    //             console.log(res.data);
-    //             setProduct(res.data.data);
-    //             setProductType(checkType(res.data.data));
-    //         })
-    //         .catch((err) => console.log(err))
-    //         .finally(() => setIsLoading(false));
-    // }
-    // }, [isEditPage]);
 
     const onInputChange = (e) => {
         const fileUpload = e.target.files[0];
@@ -118,8 +66,6 @@ export default function CropIdentifier() {
         setSoil(response.data[0]);
         setCrops(response.data.splice(1));
         setIsLoading(false);
-
-        console.log(response.data);
     }
 
     return (
@@ -199,3 +145,7 @@ export default function CropIdentifier() {
         </Container>
     );
 }
+
+const CropIdentifierPage = () => <Page title="Crop Identifier" content="Upload an image to find out the best crops for your soil"><CropIdentifier /></Page>
+
+export default CropIdentifierPage;
