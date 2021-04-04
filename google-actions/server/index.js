@@ -58,49 +58,49 @@ app.post('/', express.json(), (req,res)=>{
         response : res
     });  
 
-    function askParameters(agent){
+   async function askParameters(agent){
 
         var allValues = agent.context.get("awaiting_parameters").parameters
         console.log(allValues);
         //send request by getting parameters from dialogflow  and get the answer
-        axios
+      try{
+          console.log("hello");
+       const res = await axios
         .post('http://127.0.0.1:5000/crop_predictor', {
             
-              /*  "N":allValues['nitrogen'], 
+               "N":allValues['nitrogen'], 
                 "P":allValues['phosphorous'],
                 "K":allValues['potassium'],
                 "temperature":allValues['temperature'],
                 "humidity": allValues['humidity'], 
                 "ph":allValues['ph'],
-                "rainfall": allValues['rainfall']*/
-    
-               "N":85, 
+                "rainfall": allValues['rainfall']
+             /*  "N":85, 
                 "P":58,
                 "K":41,
                 "temperature":21.77046169,
                 "humidity": 80.31964408, 
                 "ph":7.038096361,
-                "rainfall":226.6555374
+                "rainfall":226.6555374*/
             
         })
-        .then(res => {
-            console.log("============");
-            console.log(res["data"]);
-            //var cropName = res["data"];
-            var cropName="rice";
-            var location = allValues['location']; 
-            agent.add("We have found that + "+cropName+"crop is good. \n  You can find the nearest crop centers near you on this link \n https://3c4ce90e09da.ngrok.io/locate?crop="+cropName+"&location="+location);
         
-        })
-        .catch(error => {
-            console.error(error)
-        })
-      
+            console.log("============");
+            console.log(res);
+            var cropName = res["data"];
+           // var cropName="rice";
+            var location = allValues['location']; 
+            agent.add("We have found that "+cropName+" crop is good. \n  You can find the nearest crop centers near you on this link \n https://kisan-mitra-client.surge.sh/locate?crop="+cropName+"&location="+location);
+        
+    }catch(error){
+            console.error(error);
     }
+}
+      
     var intentMap = new Map();
     intentMap.set('askParameters', askParameters)
     agent.handleRequest(intentMap);
    
 });
 
-app.listen(8000, ()=>console.log("Server is live at port 8000"));
+app.listen(process.env.PORT || 8000, ()=>console.log("Server is live at port 8000"));
